@@ -19,4 +19,11 @@ export default defineConfig({
             },
         },
     },
+    css: {
+        preprocessorOptions: {
+            css: {
+                additionalData: '@import "resources/css/app.css";'
+            }
+        }
+    }
 });

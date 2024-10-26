@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Team;
 
 use App\Http\Resources\AbstractResource;
+use App\Http\Resources\Fixture\FixtureResource;
 use App\Http\Resources\League\LeagueResource;
 use App\Http\Resources\Standing\StandingResource;
 
@@ -23,12 +24,14 @@ class TeamResource extends AbstractResource
     public function toArray($request): array
     {
         return [
-            'id'       => $this->getKey(),
-            'name'     => $this->name,
-            'country'  => $this->country,
-            'power'    => TeamPowerResource::make($this->whenLoaded('power')),
-            'leagues'  => LeagueResource::collection($this->whenLoaded('leagues')),
-            'standing' => StandingResource::make($this->whenLoaded('standing')),
+            'id'            => $this->getKey(),
+            'name'          => $this->name,
+            'country'       => $this->country,
+            'power'         => TeamPowerResource::make($this->whenLoaded('power')),
+            'leagues'       => LeagueResource::collection($this->whenLoaded('leagues')),
+            'standing'      => StandingResource::make($this->whenLoaded('standing')),
+            'home_fixtures' => FixtureResource::collection($this->whenLoaded('homeFixtures')),
+            'away_fixtures' => FixtureResource::collection($this->whenLoaded('awayFixtures')),
         ];
     }
 }

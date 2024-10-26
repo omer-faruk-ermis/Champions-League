@@ -3,9 +3,11 @@
 namespace App\Models\Team;
 
 use App\Models\AbstractModel;
+use App\Models\Fixture;
 use App\Models\League;
 use App\Models\Standing;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -20,6 +22,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read League    $leagues
  * @property-read TeamPower $power
  * @property-read Standing  $standing
+ * @property-read Fixture   $homeFixtures
+ * @property-read Fixture   $awayFixtures
  */
 class Team extends AbstractModel
 {
@@ -51,5 +55,21 @@ class Team extends AbstractModel
     public function standing(): hasOne
     {
         return $this->hasOne(Standing::class, 'team_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function homeFixtures(): HasMany
+    {
+        return $this->hasMany(Fixture::class, 'home_team_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function awayFixtures(): HasMany
+    {
+        return $this->hasMany(Fixture::class, 'away_team_id', 'id');
     }
 }

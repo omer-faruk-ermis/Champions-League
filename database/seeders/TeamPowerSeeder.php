@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Team\TeamPower;
 use Illuminate\Database\Seeder;
 
 class TeamPowerSeeder extends Seeder

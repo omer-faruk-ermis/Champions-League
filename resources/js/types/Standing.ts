@@ -1,4 +1,5 @@
 import {League} from "./League";
+import {Team} from "./Team";
 
 export type Standing = {
     id: number;

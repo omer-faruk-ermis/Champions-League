@@ -1,11 +1,10 @@
 import React from 'react';
-import TeamList from "./TeamList.jsx";
+import TournamentDashboard from "./TournamentDashboard";
 
 function App() {
     return (
         <div>
-            <h1>Insider Champions League</h1>
-            <TeamList />
+            <TournamentDashboard />
         </div>
     );
 }

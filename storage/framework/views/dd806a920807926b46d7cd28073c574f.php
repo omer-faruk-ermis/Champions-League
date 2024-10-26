@@ -6,10 +6,11 @@
 
         <title>Champions League</title>
         <?php echo app('Illuminate\Foundation\Vite')->reactRefresh(); ?>
-        <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.jsx']); ?>
+        <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.jsx', 'resources/css/app.css']); ?>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="icon" href="<?php echo e(asset('src/icons/league-logo.png')); ?>" type="image/x-icon">
 
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">

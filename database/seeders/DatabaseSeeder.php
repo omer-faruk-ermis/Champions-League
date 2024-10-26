@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             TeamSeeder::class,
             LeagueSeeder::class,
             LeagueTeamSeeder::class,
+            TeamPowerSeeder::class,
         ]);
     }
 }

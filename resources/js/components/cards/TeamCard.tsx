@@ -1,50 +1,48 @@
-interface TeamFeatures {
-    name: string;
-    country: string;
-    leagues: object;
-    attack: string;
-    defense: string;
-    fan_support: string;
-    team_spirit: string;
-}
+import React from 'react';
+import { TeamCardProps } from "./TeamCard.interface";
+import { League } from "../../types/League";
+import leagueLogo from '../../assets/icons/league-logo.png';
 
-export default function TeamCard({team}: { team: TeamFeatures }) {
+const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
     return (
-        <div
-            className="w-full max-w-sm mx-auto overflow-hidden transition-all duration-300 hover:shadow-lg bg-white rounded-lg shadow">
-            <div className="text-center p-6">
-                <div className="w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full bg-gray-100">
-                    <img src={team.logo} alt={`${team.name} logo`} className="object-cover w-full h-full"/>
+        <div className="w-full mx-auto bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div className="p-3">
+                <div className="w-12 h-12 mx-auto mb-2 overflow-hidden rounded-full bg-gray-100">
+                    <img src={leagueLogo} alt={`${team.name} logo`} className="object-cover w-full h-full" />
                 </div>
-                <h2 className="text-2xl font-bold text-blue-600">{team.ad}</h2>
+                <h2 className="text-base font-bold text-blue-600 truncate text-center">{team.name}</h2>
+                <div className="grid grid-cols-2 gap-2 text-center mt-2">
+                    <div className="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mb-1 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="text-xs font-medium">{team.country}</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mb-1 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        <span className="text-xs font-medium">{team.leagues.length}</span>
+                    </div>
+                </div>
             </div>
-            <div className="px-6 pt-2 pb-6">
-                <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="flex flex-col items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mb-2 text-blue-600" fill="none"
-                             viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-                        </svg>
-                        <span className="text-sm font-medium">Şampiyonluk</span>
-                        <span className="text-2xl font-bold text-blue-600">{takim.sampiyonluk}</span>
+            <div className="px-3 pb-3">
+                <div className="text-center">
+                    <span className="text-xs text-gray-600">Leagues:</span>
+                    <div className="mt-1 flex flex-wrap justify-center">
+                        {team.leagues.slice(0, 3).map((league: League) => (
+                            <span key={league.id} className="text-xs bg-gray-100 rounded px-1 py-0.5 m-0.5">
+                                {league.name}
+                            </span>
+                        ))}
+                        {team.leagues.length > 3 && (
+                            <span className="text-xs text-gray-500">+{team.leagues.length - 3} more</span>
+                        )}
                     </div>
-                    <div className="flex flex-col items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mb-2 text-blue-600" fill="none"
-                             viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                        <span className="text-sm font-medium">Oyuncu Sayısı</span>
-                        <span className="text-2xl font-bold text-blue-600">{takim.oyuncuSayisi}</span>
-                    </div>
-                </div>
-                <div className="mt-4 text-center">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-            Süper Lig
-          </span>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default TeamCard;

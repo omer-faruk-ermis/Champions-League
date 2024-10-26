@@ -25,7 +25,7 @@ use Illuminate\Support\Carbon;
  */
 class Fixture extends AbstractModel
 {
-    protected $table    = 'champions_league.fixture';
+    protected $table    = 'champions_league.fixtures';
     protected $fillable = [
         'home_team_id',
         'away_team_id',

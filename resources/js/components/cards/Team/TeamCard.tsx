@@ -1,7 +1,7 @@
 import React from 'react';
 import { TeamCardProps } from "./TeamCard.interface";
-import { League } from "../../types/League";
-import leagueLogo from '../../assets/icons/league-logo.png';
+import { League } from "../../../types/League";
+import leagueLogo from '../../../assets/icons/league-logo.png';
 
 const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
     return (
@@ -28,7 +28,6 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
             </div>
             <div className="px-3 pb-3">
                 <div className="text-center">
-                    <span className="text-xs text-gray-600">Leagues:</span>
                     <div className="mt-1 flex flex-wrap justify-center">
                         {team.leagues.slice(0, 3).map((league: League) => (
                             <span key={league.id} className="text-xs bg-gray-100 rounded px-1 py-0.5 m-0.5">

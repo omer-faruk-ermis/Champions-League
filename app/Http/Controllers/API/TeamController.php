@@ -22,9 +22,9 @@ class TeamController extends Controller
     /**
      * TeamController constructor
      */
-    public function __construct(Request $request)
+    public function __construct()
     {
-        $this->teamService = new TeamService($request);
+        $this->teamService = new TeamService();
     }
 
     /**

@@ -22,9 +22,10 @@ class LeagueResource extends AbstractResource
     public function toArray($request): array
     {
         return [
-            'id'    => $this->getKey(),
-            'name'  => $this->name,
-            'teams' => TeamResource::collection($this->whenLoaded('teams')),
+            'id'            => $this->getKey(),
+            'name'          => $this->name,
+            'total_matches' => $this->total_matches,
+            'teams'         => TeamResource::collection($this->whenLoaded('teams')),
         ];
     }
 }

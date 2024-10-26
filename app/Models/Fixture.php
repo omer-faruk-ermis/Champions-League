@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Team\Team;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 
 /**
@@ -15,9 +16,10 @@ use Illuminate\Support\Carbon;
  * @property int         $home_team_id
  * @property int         $away_team_id
  * @property int         $league_id
- * @property Carbon      $match_date
+ * @property int         $match_order
  * @property int         $home_team_score
  * @property int         $away_team_score
+ * @property string      $status
  *
  * @property-read Team   $homeTeam
  * @property-read Team   $awayTeam
@@ -30,9 +32,10 @@ class Fixture extends AbstractModel
         'home_team_id',
         'away_team_id',
         'league_id',
-        'match_date',
+        'match_order',
         'home_team_score',
         'away_team_score',
+        'status',
     ];
 
     /**
@@ -52,10 +55,10 @@ class Fixture extends AbstractModel
     }
 
     /**
-     * @return BelongsTo
+     * @return hasOne
      */
-    public function league(): BelongsTo
+    public function league(): hasOne
     {
-        return $this->belongsTo(League::class);
+        return $this->hasOne(League::class, 'id', 'league_id');
     }
 }

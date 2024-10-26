@@ -24,12 +24,13 @@ class FixtureResource extends AbstractResource
     {
         return [
             'id'              => $this->getKey(),
-            'match_date'      => $this->match_date,
+            'match_order'     => $this->match_order,
             'home_team_score' => $this->home_team_score,
             'away_team_score' => $this->away_team_score,
+            'status' => $this->status,
             'home_team'       => TeamResource::make($this->whenLoaded('homeTeam')),
             'away_team'       => TeamResource::make($this->whenLoaded('awayTeam')),
-            'league'          => LeagueResource::collection($this->whenLoaded('league')),
+            'league'          => LeagueResource::make($this->whenLoaded('league')),
         ];
     }
 }

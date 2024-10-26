@@ -33,7 +33,6 @@ class TeamService
             ->get();
     }
 
-
     /**
      * @param string $id
      *

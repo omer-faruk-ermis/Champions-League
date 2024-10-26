@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\FixtureController;
+use App\Http\Controllers\API\StandingController;
 use App\Http\Controllers\API\TeamController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('team')->group(function () {
     Route::get('/', [TeamController::class, 'index']);
+});
+
+Route::prefix('standing')->group(function () {
+    Route::get('/', [StandingController::class, 'index']);
+});
+
+Route::prefix('fixture')->group(function () {
+    Route::get('/', [FixtureController::class, 'index']);
+    Route::get('/create_fixture', [FixtureController::class, 'createFixture']);
+    Route::get('/play_week_matches', [FixtureController::class, 'playWeekMatches']);
+    Route::put('/{id}', [FixtureController::class, 'update']);
+    Route::get('/{id}', [FixtureController::class, 'show']);
 });

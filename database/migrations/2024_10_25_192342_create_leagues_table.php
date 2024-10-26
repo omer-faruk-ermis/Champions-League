@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('leagues', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->integer('total_matches')->default(6);
             $table->softDeletes();
             $table->timestamps();
         });

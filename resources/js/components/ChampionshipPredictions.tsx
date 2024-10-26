@@ -10,17 +10,17 @@ const mockPredictions = [
 export default function ChampionshipPredictions() {
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Şampiyonluk Tahminleri</CardTitle>
-            </CardHeader>
-            <CardContent>
-                {mockPredictions.map((prediction) => (
-                    <div key={prediction.team} className="flex justify-between items-center mb-2">
-                        <span>{prediction.team}</span>
-                        <span className="font-medium">%{prediction.percentage}</span>
-                    </div>
-                ))}
-            </CardContent>
+                <CardHeader>
+                    <CardTitle>Championship Predictions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    {mockPredictions.map((prediction) => (
+                        <div key={prediction.team} className="flex justify-between items-center mb-2">
+                            <span>{prediction.team}</span>
+                            <span className="font-medium">%{prediction.percentage}</span>
+                        </div>
+                    ))}
+                </CardContent>
         </Card>
-    )
+)
 }

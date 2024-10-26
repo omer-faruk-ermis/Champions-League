@@ -1,7 +1,7 @@
 import {Button} from "./ui/Button/button"
 import {Card, CardContent, CardHeader, CardTitle} from "./ui/card"
-import LeagueTable from './LeagueTable'
-import WeeklyMatches from './WeeklyMatches'
+import Standing from './Standing'
+import Fixture from './Fixture'
 import ChampionshipPredictions from './ChampionshipPredictions'
 import TeamList from "./TeamList";
 
@@ -9,13 +9,13 @@ export default function SimulationPanel() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="text-2xl font-bold">Simülasyon</CardTitle>
+                <CardTitle className="text-2xl font-bold">Simulation</CardTitle>
             </CardHeader>
             <CardContent>
                 <TeamList/>
-                <div className="grid md:grid-cols-3 gap-6">
-                    <LeagueTable/>
-                    <WeeklyMatches/>
+                <Standing/>
+                <div className="grid md:grid-cols-2 gap-6">
+                    <Fixture/>
                     <ChampionshipPredictions/>
                 </div>
                 <div className="flex justify-between mt-6">

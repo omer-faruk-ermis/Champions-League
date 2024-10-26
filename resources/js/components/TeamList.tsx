@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getTeams } from '../services/teamService';
+import { getTeams } from '../services/services';
 import { Team } from '../types/Team';
-import TeamCard from "./cards/TeamCard";
+import TeamCard from "./cards/Team/TeamCard";
 
 const TeamList: React.FC = () => {
     const [teams, setTeams] = useState<Team[]>([]);

@@ -13,7 +13,7 @@
         <link rel="icon" href="<?php echo e(asset('src/icons/league-logo.png')); ?>" type="image/x-icon">
 
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="font-sans antialiased">
     <div id="app"></div>
     </body>
 </html>

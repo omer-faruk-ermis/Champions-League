@@ -3,6 +3,7 @@ const BASE_API_URL = '/api';
 export const API_URLS = {
     team: '/team',
     standing: '/standing',
+    prediction: '/prediction',
     league: '/league',
     resetLeague: '/league/reset_league',
     fixture: '/fixture',

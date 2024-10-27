@@ -21,6 +21,7 @@ const GenerateFixturesButton: React.FC<GenerateFixturesButtonProps> = ({
             className={`w-full mb-4 py-2 rounded bg-blue-500 text-white`}
             onClick={handleGenerate}
             text={loading ? "Generating..." : "Generate Fixtures"}
+            variant={"primary"}
         />
     );
 };

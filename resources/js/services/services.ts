@@ -27,6 +27,16 @@ export const getStandings = async (params: any): Promise<Standing[]> => {
     }
 };
 
+export const getPredictions = async (params: any): Promise<[]> => {
+    try {
+        const response = await axios.get(getFullUrl(API_URLS.prediction), {params});
+        return response.data.data;
+    } catch (error) {
+        toast.error(MESSAGES.predictionLoadError);
+        throw error;
+    }
+};
+
 export const getFixtures = async (params: any): Promise<Fixture[]> => {
     console.log(params);
     try {

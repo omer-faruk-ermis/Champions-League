@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\FixtureController;
 use App\Http\Controllers\API\LeagueController;
+use App\Http\Controllers\API\PredictionController;
 use App\Http\Controllers\API\StandingController;
 use App\Http\Controllers\API\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,10 @@ Route::prefix('team')->group(function () {
 
 Route::prefix('standing')->group(function () {
     Route::get('/', [StandingController::class, 'index']);
+});
+
+Route::prefix('prediction')->group(function () {
+    Route::get('/', [PredictionController::class, 'index']);
 });
 
 Route::prefix('league')->group(function () {

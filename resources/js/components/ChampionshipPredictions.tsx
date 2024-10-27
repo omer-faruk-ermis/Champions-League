@@ -1,23 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import {useEffect, useState} from "react";
+import {getPredictions} from "../services/services";
 
-const mockPredictions = [
-    { team: 'Liverpool', percentage: 40 },
-    { team: 'Manchester City', percentage: 35 },
-    { team: 'Chelsea', percentage: 15 },
-    { team: 'Arsenal', percentage: 10 },
-]
-
-export default function ChampionshipPredictions() {
+export default function ChampionshipPredictions({leagueId}) {
+    const [prediction, setPrediction] = useState<[]>([]);
+    useEffect(() => {
+        (async () => setPrediction(await getPredictions({league_id: leagueId})))();
+    }, []);
     return (
         <Card>
                 <CardHeader>
                     <CardTitle text={'Championship Predictions'}/>
                 </CardHeader>
                 <CardContent>
-                    {mockPredictions.map((prediction) => (
-                        <div key={prediction.team} className="flex justify-between items-center mb-2">
-                            <span>{prediction.team}</span>
-                            <span className="font-medium">%{prediction.percentage}</span>
+                    {prediction.map((prediction) => (
+                        <div key={prediction.team.id} className="flex justify-between items-center mb-2">
+                            <span>{prediction.team.name}</span>
+                            <span className="font-medium">%{prediction.championship_probability.toFixed(2)}</span>
                         </div>
                     ))}
                 </CardContent>

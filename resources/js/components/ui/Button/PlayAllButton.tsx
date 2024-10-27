@@ -20,9 +20,10 @@ const PlayAllButton: React.FC<PlayWeeklyButtonProps> = ({
 
     return (
         <Button
-            className={`w-full mb-4 py-2 rounded bg-blue-500 text-white`}
+            className={`w-full mb-4 py-2 rounded bg-gray-300 text-black`}
             onClick={handlePlay}
             text={loading ? "Playing..." : text}
+            variant={"secondary"}
         />
     );
 };

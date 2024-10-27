@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Filters\Standing\StandingFilter;
-use App\Filters\Team\TeamFilter;
 use App\Models\Team\Team;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

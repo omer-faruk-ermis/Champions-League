@@ -18,6 +18,6 @@ export const CardContent: React.FC = ({children}) =>
         <div className="text-gray-700">{children}</div>
     );
 
-export const CardTitle: React.FC = ({children}) => (
-    <h2 className="text-xl font-semibold">{children}</h2>
+export const CardTitle: React.FC = ({text}) => (
+    <h2 className="text-xl font-semibold">{text}</h2>
 );

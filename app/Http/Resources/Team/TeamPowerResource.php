@@ -22,7 +22,7 @@ class TeamPowerResource extends AbstractResource
     {
         return [
             'id'          => $this->getKey(),
-            'attack'      => $this->attact,
+            'attack'      => $this->attack,
             'defense'     => $this->defense,
             'team_spirit' => $this->team_spirit,
             'fan_support' => $this->fan_support,

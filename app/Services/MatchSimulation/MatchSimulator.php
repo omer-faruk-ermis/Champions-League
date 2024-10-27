@@ -3,11 +3,12 @@
 namespace App\Services\MatchSimulation;
 
 use App\Models\Team\Team;
-use App\Models\Team\TeamPower;
 use App\Services\MatchSimulation\Calculators\GoalProbabilityCalculator;
 
 class MatchSimulator
 {
+    private const ATTEMPT_SCALING_FACTOR = 6;
+
     /**
      * Simulates a match between two teams and calculates the final scores.
      *
@@ -18,11 +19,8 @@ class MatchSimulator
      */
     public function simulateMatch(Team $homeTeam, Team $awayTeam): array
     {
-        $homePower = $homeTeam->teamPower();
-        $awayPower = $awayTeam->teamPower();
-
-        $homeScore = $this->generateGoals($homePower, $awayPower, true);
-        $awayScore = $this->generateGoals($awayPower, $homePower, false);
+        $homeScore = $this->generateGoals($homeTeam->power()->first(), $awayTeam->power()->first(), true);
+        $awayScore = $this->generateGoals($awayTeam->power()->first(), $homeTeam->power()->first(), false);
 
         return [
             'home_score' => $homeScore,
@@ -33,13 +31,13 @@ class MatchSimulator
     /**
      * Generates the number of goals for a match based on attacking and defensive powers.
      *
-     * @param TeamPower $attackingPower
-     * @param TeamPower $defensivePower
-     * @param bool      $isHome
+     * @param object $attackingPower
+     * @param object $defensivePower
+     * @param bool   $isHome
      *
      * @return int
      */
-    private function generateGoals(TeamPower $attackingPower, TeamPower $defensivePower, bool $isHome): int
+    private function generateGoals(object $attackingPower, object $defensivePower, bool $isHome): int
     {
         $goalProbability = GoalProbabilityCalculator::calculateGoalProbability($attackingPower, $defensivePower, $isHome);
 
@@ -52,19 +50,18 @@ class MatchSimulator
     /**
      * Calculates the number of goal-scoring opportunities.
      *
-     * @param TeamPower $attackingPower
-     * @param TeamPower $defensivePower
-     * @param float     $goalProbability
+     * @param object $attackingPower
+     * @param object $defensivePower
+     * @param float  $goalProbability
      *
      * @return int
      */
-    private function calculateAttempts(TeamPower $attackingPower, TeamPower $defensivePower, float $goalProbability): int
+    private function calculateAttempts(object $attackingPower, object $defensivePower, float $goalProbability): int
     {
-        $attackStrength  = $attackingPower->attack * $goalProbability; // Gol atma gücü
-        $defenseStrength = $defensivePower->defense; // Savunma gücü
+        $attackStrength  = $attackingPower->attack * $goalProbability;
+        $defenseStrength = $defensivePower->defense;
 
-        // Deneme sayısını belirle
-        return max(1, min(100, round($attackStrength / $defenseStrength * 10))); // 1 ile 100 arasında deneme
+        return max(1, min(100, round($attackStrength / $defenseStrength * self::ATTEMPT_SCALING_FACTOR)));
     }
 
     /**

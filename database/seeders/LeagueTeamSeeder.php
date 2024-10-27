@@ -15,11 +15,13 @@ class LeagueTeamSeeder extends Seeder
     {
         $serieA = League::where('name', 'Serie A')->first();
         $premierLeague = League::where('name', 'Premier League')->first();
+        $championsLeague = League::where('name', 'Champions League')->first();
 
         $teams = Team::all();
 
         $serieATeams = $teams->take(4);
         $premierLeagueTeams = $teams->skip(4)->take(4);
+        $championsLeagueTeams = $teams->skip(8)->take(8);
 
         foreach ($serieATeams as $team) {
             $serieA->teams()->attach($team->id);
@@ -27,6 +29,10 @@ class LeagueTeamSeeder extends Seeder
 
         foreach ($premierLeagueTeams as $team) {
             $premierLeague->teams()->attach($team->id);
+        }
+
+        foreach ($championsLeagueTeams as $team) {
+            $championsLeague->teams()->attach($team->id);
         }
     }
 }

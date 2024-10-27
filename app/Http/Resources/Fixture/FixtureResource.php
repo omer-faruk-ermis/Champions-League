@@ -27,7 +27,7 @@ class FixtureResource extends AbstractResource
             'match_order'     => $this->match_order,
             'home_team_score' => $this->home_team_score,
             'away_team_score' => $this->away_team_score,
-            'status' => $this->status,
+            'match_status'    => $this->match_status,
             'home_team'       => TeamResource::make($this->whenLoaded('homeTeam')),
             'away_team'       => TeamResource::make($this->whenLoaded('awayTeam')),
             'league'          => LeagueResource::make($this->whenLoaded('league')),

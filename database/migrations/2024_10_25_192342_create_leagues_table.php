@@ -1,11 +1,11 @@
 <?php
 
+use App\Constants\LeagueStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('total_matches')->default(6);
+            $table->string('league_status')->default(LeagueStatus::PASSIVE);
             $table->softDeletes();
             $table->timestamps();
         });

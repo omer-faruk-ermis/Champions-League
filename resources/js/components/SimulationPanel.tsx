@@ -3,25 +3,24 @@ import {Card, CardContent, CardHeader, CardTitle} from "./ui/card"
 import Standing from './Standing'
 import Fixture from './Fixture'
 import ChampionshipPredictions from './ChampionshipPredictions'
-import TeamList from "./TeamList";
+import LeagueTabs from "./LeagueTabs";
 
 export default function SimulationPanel() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="text-2xl font-bold">Simulation</CardTitle>
+                <CardTitle className="text-2xl font-bold" text={'Simulation'}/>
             </CardHeader>
             <CardContent>
-                <TeamList/>
+                <LeagueTabs/>
                 <Standing/>
                 <div className="grid md:grid-cols-2 gap-6">
                     <Fixture/>
                     <ChampionshipPredictions/>
                 </div>
                 <div className="flex justify-between mt-6">
-                    <Button variant="primary">Tüm Haftaları Oyna</Button>
-                    <Button variant="secondary">Sonraki Haftayı Oyna</Button>
-                    <Button variant="danger">Verileri Sıfırla</Button>
+                    <Button variant="secondary" text={'Sonraki Haftayı Oyna'}/>
+                    <Button variant="danger" text={'Sezona Baştan Başla'}/>
                 </div>
             </CardContent>
         </Card>

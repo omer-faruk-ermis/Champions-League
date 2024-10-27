@@ -29,6 +29,7 @@ class TeamService
                               'homeFixtures',
                               'awayFixtures'
                           ])
+            ->filter($request->all())
             ->whereNull('deleted_at')
             ->get();
     }

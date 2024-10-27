@@ -3,6 +3,7 @@ import {Team} from "./Team";
 export type League = {
     id: number;
     name: string;
-    total_matches: number;
+    leagueStatus: string;
+    totalMatches: number;
     teams: Array<Team>;
 }

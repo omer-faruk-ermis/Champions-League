@@ -1,16 +1,13 @@
 import React from 'react';
-import { buttonStyles } from './buttonStyles';
+import {buttonStyles} from './buttonStyles';
+import {ButtonProps} from "./buttonProps";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    variant?: 'primary' | 'secondary' | 'danger' | 'outline';
-};
-
-export const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', ...props }) => {
+export const Button: React.FC<ButtonProps> = ({ text, variant = 'primary', className = '', ...props }) => {
     const variantStyle = buttonStyles.variants[variant];
 
     return (
-        <button className={`${buttonStyles.base} ${variantStyle}`} {...props}>
-            {children}
+        <button className={`${buttonStyles.base} ${variantStyle} ${className}`} {...props}>
+            {text}
         </button>
     );
 };

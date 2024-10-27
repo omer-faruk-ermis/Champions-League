@@ -2,6 +2,7 @@
 
 namespace App\Models\Team;
 
+use App\Filters\Team\TeamFilter;
 use App\Models\AbstractModel;
 use App\Models\Fixture;
 use App\Models\League;
@@ -71,5 +72,15 @@ class Team extends AbstractModel
     public function awayFixtures(): HasMany
     {
         return $this->hasMany(Fixture::class, 'away_team_id', 'id');
+    }
+
+    /**
+     * @param $filters
+     *
+     * @return TeamFilter
+     */
+    protected function filter($filters): TeamFilter
+    {
+        return new TeamFilter($filters);
     }
 }

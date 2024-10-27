@@ -1,11 +1,8 @@
 import React from 'react';
-import { buttonStyles } from './buttonStyles';
+import {buttonStyles} from './buttonStyles';
+import {SelectBoxProps} from "./SelectBoxProps";
 
-type SelectBoxProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
-    variant?: 'primary' | 'secondary' | 'danger' | 'outline';
-    options: { value: number; label: string }[];
-};
-export const SelectBox: React.FC<SelectBoxProps> = ({ variant = 'primary', options, ...props }) => {
+export const SelectBox: React.FC<SelectBoxProps> = ({variant = 'primary', options, ...props}) => {
     const variantStyle = buttonStyles.variants[variant];
 
     return (

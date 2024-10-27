@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\FixtureController;
+use App\Http\Controllers\API\LeagueController;
 use App\Http\Controllers\API\StandingController;
 use App\Http\Controllers\API\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +25,14 @@ Route::prefix('standing')->group(function () {
     Route::get('/', [StandingController::class, 'index']);
 });
 
+Route::prefix('league')->group(function () {
+    Route::get('/', [LeagueController::class, 'index']);
+});
+
 Route::prefix('fixture')->group(function () {
     Route::get('/', [FixtureController::class, 'index']);
-    Route::get('/create_fixture', [FixtureController::class, 'createFixture']);
+    Route::get('/create_fixtures', [FixtureController::class, 'createFixture']);
     Route::get('/play_week_matches', [FixtureController::class, 'playWeekMatches']);
-    Route::put('/{id}', [FixtureController::class, 'update']);
     Route::get('/{id}', [FixtureController::class, 'show']);
+    Route::put('/{id}', [FixtureController::class, 'update']);
 });

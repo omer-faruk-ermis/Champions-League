@@ -19,7 +19,7 @@ use Illuminate\Support\Carbon;
  * @property int         $match_order
  * @property int         $home_team_score
  * @property int         $away_team_score
- * @property string      $status
+ * @property string      $match_status
  *
  * @property-read Team   $homeTeam
  * @property-read Team   $awayTeam
@@ -35,7 +35,7 @@ class Fixture extends AbstractModel
         'match_order',
         'home_team_score',
         'away_team_score',
-        'status',
+        'match_status',
     ];
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Constants\DefaultConstant;
+use App\Constants\LeagueStatus;
 use App\Models\League;
 use App\Models\Fixture;
 use App\Constants\MatchStatus;
@@ -42,6 +43,10 @@ class FixtureGenerator
         foreach ($this->fixtureList as $fixtureData) {
             Fixture::create($fixtureData);
         }
+
+        $this->league->update([
+                                  'league_status' => LeagueStatus::ACTIVE,
+                              ]);
     }
 
     /**
@@ -78,24 +83,26 @@ class FixtureGenerator
             'home_team_id' => $homeTeam->id,
             'away_team_id' => $awayTeam->id,
             'match_order'  => $matchOrder,
-            'status'       => MatchStatus::SCHEDULED,
+            'match_status' => MatchStatus::SCHEDULED,
             'league_id'    => $this->league->id,
         ];
     }
 
     /**
-     * @param int $matchOrder
+     * @param int|null $matchOrder
      *
      * @return void
      */
-    public function playMatches(int $matchOrder): void
+    public function playMatches(int $matchOrder = null): void
     {
         $teamIds = $this->teams->pluck('id');
 
         $fixturesToPlay = Fixture::whereIn('home_team_id', $teamIds)
             ->whereIn('away_team_id', $teamIds)
-            ->where('status', MatchStatus::SCHEDULED)
-            ->where('match_order', $matchOrder)
+            ->where('match_status', MatchStatus::SCHEDULED)
+            ->when(!empty($matchOrder), function ($q) use ($matchOrder) {
+                $q->where('match_order', $matchOrder);
+            })
             ->get();
 
         $matchSimulator = new MatchSimulator();
@@ -118,9 +125,9 @@ class FixtureGenerator
     private function updateFixtureStatus(Fixture $fixture, array $matchResult): void
     {
         $fixture->update([
-                             'status'     => MatchStatus::COMPLETED,
-                             'home_score' => $matchResult['home_score'],
-                             'away_score' => $matchResult['away_score'],
+                             'match_status'    => MatchStatus::COMPLETED,
+                             'home_team_score' => $matchResult['home_score'],
+                             'away_team_score' => $matchResult['away_score'],
                          ]);
     }
 }

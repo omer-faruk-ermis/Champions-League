@@ -46,6 +46,39 @@ class TeamSeeder extends Seeder
                 'name' => 'Manchester United',
                 'country' => 'England',
             ],
+
+            [
+                'name' => 'Sevilla',
+                'country' => 'Spain',
+            ],
+            [
+                'name' => 'Enpoli',
+                'country' => 'Italy',
+            ],
+            [
+                'name' => 'Napoli',
+                'country' => 'Italy',
+            ],
+            [
+                'name' => 'Bayern Munich',
+                'country' => 'Germany',
+            ],
+            [
+                'name' => 'Dortmund',
+                'country' => 'Germany',
+            ],
+            [
+                'name' => 'Real Madrid',
+                'country' => 'Spain',
+            ],
+            [
+                'name' => 'Athletic Bilbao',
+                'country' => 'Spain',
+            ],
+            [
+                'name' => 'Wolfsburg',
+                'country' => 'England',
+            ],
         ];
 
         foreach ($teams as $team) {

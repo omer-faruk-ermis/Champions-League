@@ -25,6 +25,7 @@ class LeagueResource extends AbstractResource
             'id'            => $this->getKey(),
             'name'          => $this->name,
             'total_matches' => $this->total_matches,
+            'league_status' => $this->league_status,
             'teams'         => TeamResource::collection($this->whenLoaded('teams')),
         ];
     }

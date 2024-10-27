@@ -12,12 +12,9 @@ export default function Fixture() {
     const totalWeeks = fixtures[0]?.league.total_matches || 0;
 
     useEffect(() => {
-        const fetchFixtures = async () => {
-            const data = await getFixtures();
-            setFixtures(data);
-        };
-
-        fetchFixtures();
+        (async () => {
+            setFixtures(await getFixtures());
+        })();
     }, []);
 
     useEffect(() => {
@@ -39,7 +36,7 @@ export default function Fixture() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>{weekIndex + 1}. Week</CardTitle>
+                <CardTitle text={`${weekIndex + 1}. Week`}/>
                 <SelectBox
                     value={weekIndex}
                     onChange={handleWeekChange}

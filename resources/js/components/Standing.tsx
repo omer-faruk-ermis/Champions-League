@@ -9,19 +9,13 @@ export default function Standing() {
     const [standing, setStanding] = useState<Standing[]>([]);
 
     useEffect(() => {
-        const fetchStandings = async () => {
-
-            const data = await getStandings();
-            setStanding(data);
-        };
-
-        fetchStandings();
+        (async () => setStanding(await getStandings()))();
     }, []);
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle>{standing[0]?.league.name}</CardTitle>
+                <CardTitle text={standing[0]?.league.name} />
             </CardHeader>
             <CardContent>
                 <Table>

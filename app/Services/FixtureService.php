@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Constants\LeagueStatus;
 use App\Exceptions\Fixture\FixtureNotFoundException;
 use App\Models\Fixture;
 use App\Models\League;
@@ -83,7 +84,7 @@ class FixtureService
      */
     public function createFixture(Request $request): void
     {
-        $league = League::find($request->input('league_id'));
+        $league = League::find($request->input('league_id'))->where('league_status', LeagueStatus::PASSIVE)->first();
 
         $fixtureGenerator = new FixtureGenerator($league);
         $fixtureGenerator->createFixtures();

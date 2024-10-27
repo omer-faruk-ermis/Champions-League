@@ -11,7 +11,7 @@ export default function ChampionshipPredictions() {
     return (
         <Card>
                 <CardHeader>
-                    <CardTitle>Championship Predictions</CardTitle>
+                    <CardTitle text={'Championship Predictions'}/>
                 </CardHeader>
                 <CardContent>
                     {mockPredictions.map((prediction) => (

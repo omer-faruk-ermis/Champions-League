@@ -30,11 +30,14 @@ class StandingService
      */
     public function index(Request $request): Collection
     {
-        return Standing::with([
-                                  'team',
-                                  'league',
-                              ])
-            ->whereNull('deleted_at')
+        return Standing::with(['team', 'league'])
+            ->filter($request->all())
+            ->join('teams', 'teams.id', '=', 'standings.team_id')
+            ->select('standings.*')
+            ->whereNull('standings.deleted_at')
+            ->orderByRaw("CASE WHEN played = 0 THEN teams.name END ASC")
+            ->orderByRaw("CASE WHEN played > 0 THEN points END DESC")
+            ->orderByRaw("CASE WHEN played > 0 THEN (goals_for - goals_against) END DESC")
             ->get();
     }
 

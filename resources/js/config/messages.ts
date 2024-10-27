@@ -5,5 +5,6 @@ export const MESSAGES = {
     createFixturesLoadError: 'There was an error creating the fixtures.',
     leagueLoadError: 'There was an error loading the leagues.',
     playWeeklyLoadError: 'There was an error playing the matches.',
+    playAllLoadError: 'There was an error playing all the matches.',
     resetLeagueLoadError: 'There was an error reseting the league.',
 };

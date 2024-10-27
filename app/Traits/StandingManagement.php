@@ -107,6 +107,8 @@ trait StandingManagement
         $awayStanding->goals_for     += $awayScore;
         $homeStanding->goals_against += $awayScore;
         $awayStanding->goals_against += $homeScore;
+        $homeStanding->played++;
+        $awayStanding->played++;
 
         if ($homeScore > $awayScore) {
             $homeStanding->won++;

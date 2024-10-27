@@ -27,7 +27,7 @@ Route::prefix('standing')->group(function () {
 
 Route::prefix('league')->group(function () {
     Route::get('/', [LeagueController::class, 'index']);
-    Route::get('/reset_league', [LeagueController::class, 'resetLeague']);
+    Route::delete('/reset_league', [LeagueController::class, 'resetLeague']);
 });
 
 Route::prefix('fixture')->group(function () {

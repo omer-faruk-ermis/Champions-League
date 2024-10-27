@@ -5,7 +5,7 @@ import MatchCard from "./cards/Match/MatchCard";
 import {Card, CardContent, CardHeader, CardTitle} from "./ui/card";
 import {SelectBox} from "./ui/Button/select-box";
 
-export default function Fixture() {
+export default function Fixture({leagueId}) {
     const [fixtures, setFixtures] = useState<Fixture[]>([]);
     const [weekIndex, setWeekIndex] = useState(0);
     const [weekFixtures, setWeekFixtures] = useState<Fixture[]>([]);
@@ -13,7 +13,7 @@ export default function Fixture() {
 
     useEffect(() => {
         (async () => {
-            setFixtures(await getFixtures());
+            setFixtures(await getFixtures({league_id: leagueId}));
         })();
     }, []);
 
@@ -47,7 +47,7 @@ export default function Fixture() {
             <CardContent>
                 {weekFixtures.map((match: Fixture) => (
                     <div key={match.id}>
-                        <MatchCard match={match} />
+                        <MatchCard match={match}/>
                     </div>
                 ))}
             </CardContent>

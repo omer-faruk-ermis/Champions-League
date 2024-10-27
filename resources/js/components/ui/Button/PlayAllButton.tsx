@@ -2,19 +2,19 @@ import React, {useState} from 'react';
 import {Button} from "./button";
 
 interface PlayWeeklyButtonProps {
-    onPlayWeekly: () => Promise<void>;
+    onPlayAll: () => Promise<void>;
     text: string;
 }
 
-const PlayWeeklyButton: React.FC<PlayWeeklyButtonProps> = ({
-                                                               onPlayWeekly,
-                                                               text
-                                                           }) => {
+const PlayAllButton: React.FC<PlayWeeklyButtonProps> = ({
+                                                            onPlayAll,
+                                                            text
+                                                        }) => {
     const [loading, setLoading] = useState(false);
 
     const handlePlay = async () => {
         setLoading(true);
-        await onPlayWeekly();
+        await onPlayAll();
         setLoading(false);
     };
 
@@ -27,4 +27,4 @@ const PlayWeeklyButton: React.FC<PlayWeeklyButtonProps> = ({
     );
 };
 
-export default PlayWeeklyButton;
+export default PlayAllButton;

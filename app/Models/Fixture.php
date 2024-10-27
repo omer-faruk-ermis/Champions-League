@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Filters\Fixture\FixtureFilter;
 use App\Models\Team\Team;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Carbon;
 
 /**
  * Class Match
@@ -60,5 +60,15 @@ class Fixture extends AbstractModel
     public function league(): hasOne
     {
         return $this->hasOne(League::class, 'id', 'league_id');
+    }
+
+    /**
+     * @param $filters
+     *
+     * @return FixtureFilter
+     */
+    protected function filter($filters): FixtureFilter
+    {
+        return new FixtureFilter($filters);
     }
 }

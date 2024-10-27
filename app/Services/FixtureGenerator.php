@@ -30,14 +30,16 @@ class FixtureGenerator
     public function createFixtures(): void
     {
         $matchOrder = 1;
+        $totalWeeks = (count($this->teams) - 1) * 2; // Her takım, tüm takımla hem evde hem deplasmanda oynar
 
-        foreach ($this->generateMatchups() as $index => $matchup) {
-            $this->fixtureList->push($this->createFixtureData($matchup['home'], $matchup['away'], $matchOrder));
-            $this->fixtureList->push($this->createFixtureData($matchup['away'], $matchup['home'], $matchOrder));
+        $matchups = $this->generateWeeklyMatchups();
 
-            if (($index + 1) % count($this->teams) === 0) {
-                $matchOrder++;
+        foreach ($matchups as $weekMatchups) {
+            foreach ($weekMatchups as $matchup) {
+                // Haftalık eşleşmeleri ekleyelim
+                $this->fixtureList->push($this->createFixtureData($matchup['home'], $matchup['away'], $matchOrder));
             }
+            $matchOrder++;
         }
 
         foreach ($this->fixtureList as $fixtureData) {
@@ -50,37 +52,62 @@ class FixtureGenerator
     /**
      * @return array
      */
-    private function generateMatchups(): array
+    private function generateWeeklyMatchups(): array
     {
-        $matchups = [];
+        $weeklyMatchups = [];
+        $teams = $this->teams->all();
+        $totalTeams = count($teams);
 
-        foreach ($this->teams as $homeTeam) {
-            foreach ($this->teams as $awayTeam) {
-                if ($homeTeam->id !== $awayTeam->id) {
-                    $matchups[] = [
-                        DefaultConstant::HOME => $homeTeam,
-                        DefaultConstant::AWAY => $awayTeam,
-                    ];
-                }
-            }
+        if ($totalTeams % 2 !== 0) {
+            $teams[] = null;
         }
 
-        return $matchups;
+        $totalRounds = ($totalTeams - 1) * 2;
+
+        for ($round = 0; $round < $totalRounds; $round++) {
+            $weekMatchups = [];
+
+            for ($i = 0; $i < $totalTeams / 2; $i++) {
+                $homeTeam = $teams[$i];
+                $awayTeam = $teams[$totalTeams - 1 - $i];
+
+                if ($homeTeam !== null && $awayTeam !== null) {
+                    if ($round % 2 === 0) {
+                        $weekMatchups[] = [
+                            DefaultConstant::HOME => $homeTeam,
+                            DefaultConstant::AWAY => $awayTeam,
+                        ];
+                    } else {
+                        $weekMatchups[] = [
+                            DefaultConstant::HOME => $awayTeam,
+                            DefaultConstant::AWAY => $homeTeam,
+                        ];
+                    }
+                }
+            }
+
+            $weeklyMatchups[] = $weekMatchups;
+
+            $lastTeam = array_pop($teams);
+            array_splice($teams, 1, 0, [$lastTeam]);
+        }
+
+        return $weeklyMatchups;
     }
 
     /**
      * @param Team $homeTeam
      * @param Team $awayTeam
-     * @param int  $matchOrder
+     * @param      $match_order
      *
      * @return array
      */
-    private function createFixtureData(Team $homeTeam, Team $awayTeam, int $matchOrder): array
+    private function createFixtureData(Team $homeTeam, Team $awayTeam, $match_order): array
     {
         return [
             'home_team_id' => $homeTeam->id,
             'away_team_id' => $awayTeam->id,
-            'match_order'  => $matchOrder,
+            'match_order'  => $match_order,
             'match_status' => MatchStatus::SCHEDULED,
             'league_id'    => $this->league->id,
         ];

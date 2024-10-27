@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Constants\LeagueStatus;
+use App\Constants\MatchStatus;
 use App\Exceptions\Fixture\FixtureNotFoundException;
+use App\Exceptions\Fixture\LeagueNotFoundException;
 use App\Models\Fixture;
 use App\Models\League;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +31,7 @@ class FixtureService
                                  'awayTeam',
                                  'league',
                              ])
+            ->filter($request->all())
             ->whereNull('deleted_at')
             ->get();
     }
@@ -81,10 +84,14 @@ class FixtureService
      * @param Request $request
      *
      * @return void
+     * @throws LeagueNotFoundException
      */
     public function createFixture(Request $request): void
     {
-        $league = League::find($request->input('league_id'))->where('league_status', LeagueStatus::PASSIVE)->first();
+        $league = League::where('id', $request->input('league_id'))->where('league_status', LeagueStatus::PASSIVE)->first();
+        if (empty($league)) {
+            throw new LeagueNotFoundException();
+        }
 
         $fixtureGenerator = new FixtureGenerator($league);
         $fixtureGenerator->createFixtures();
@@ -98,9 +105,20 @@ class FixtureService
      */
     public function playWeekMatches(Request $request): void
     {
-        $league           = League::find($request->input('league_id'));
+        $league = League::find($request->input('league_id'));
+        $matchOrder = null;
+        if (!$request->input('bulk')) {
+            $fixture = Fixture::where('league_id', $league->id)
+                ->where('match_status', MatchStatus::SCHEDULED)
+                ->orderBy('match_order', 'asc')
+                ->first();
+
+            $matchOrder = $fixture->match_order;
+        }
+
         $fixtureGenerator = new FixtureGenerator($league);
-        $fixtureGenerator->playMatches($request->input('match_order'));
+        $fixtureGenerator->playMatches($matchOrder);
+
         (new StandingService())->store($request->input('league_id'));
     }
 }

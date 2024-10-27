@@ -5,11 +5,10 @@ import {getStandings} from "../services/services";
 import {Standing} from "../types/Standing";
 import {StandingFields} from "../constants/StandingField";
 
-export default function Standing() {
+export default function Standing({leagueId}) {
     const [standing, setStanding] = useState<Standing[]>([]);
-
     useEffect(() => {
-        (async () => setStanding(await getStandings()))();
+        (async () => setStanding(await getStandings({league_id: leagueId})))();
     }, []);
 
     return (

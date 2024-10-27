@@ -3,15 +3,16 @@
 
 This project is a championship simulation program developed using the following technologies:
 
+![Project-1 Screen](public/src/assests/Project-1.png)
+![Project-2 Screen](public/src/assests/Project-2.png)
+![Project-3 Screen](public/src/assests/Project-3.png)
+![Project-4 Screen](public/src/assests/Project-4.png)
+
 ![Laravel](public/laravel.png) 
 ![React](public/react.png) 
 ![TypeScript](public/typescript.png) 
 ![Vite](public/vite.png) 
 ![Tailwind CSS](public/tailwindcss.png)
-![Project-1 Screen](public/src/assests/Project-1.png)
-![Project-2 Screen](public/src/assests/Project-2.png)
-![Project-3 Screen](public/src/assests/Project-3.png)
-![Project-4 Screen](public/src/assests/Project-4.png)
 
 - **Laravel**: A PHP framework for building web applications.
 - **React**: A JavaScript library for building user interfaces.

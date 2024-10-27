@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Resources\League\LeagueCollection;
+use App\Http\Resources\SuccessResource;
 use App\Services\LeagueService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,5 +36,17 @@ class LeagueController extends Controller
         $leagues = $this->leagueService->index($request);
 
         return new LeagueCollection($leagues, __('messages.' . self::class . '.INDEX'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return SuccessResource
+     */
+    public function resetLeague(Request $request): SuccessResource
+    {
+        $this->leagueService->resetLeague($request);
+
+        return new SuccessResource(__('messages.' . self::class . '.RESET_LEAGUE'));
     }
 }

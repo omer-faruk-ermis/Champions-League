@@ -66,3 +66,13 @@ export const getLeagues = async (): Promise<League[]> => {
     }
 };
 
+export const resetLeague = async (params: any): Promise<[]> => {
+    try {
+        const response = await axios.delete(getFullUrl(API_URLS.resetLeague), {params});
+        return response.data.data;
+    } catch (error) {
+        console.error(MESSAGES.resetLeagueLoadError, error);
+        throw error;
+    }
+};
+

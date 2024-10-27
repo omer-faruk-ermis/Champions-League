@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Factories\StandingFactory;
 use App\Models\Standing;
+use App\Traits\StandingManagement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -13,6 +15,14 @@ use Illuminate\Support\Collection;
  */
 class StandingService
 {
+    use StandingManagement;
+    protected StandingFactory $standingFactory;
+
+    public function __construct()
+    {
+        $this->standingFactory = new StandingFactory();
+    }
+
     /**
      * @param Request $request
      *
@@ -26,5 +36,23 @@ class StandingService
                               ])
             ->whereNull('deleted_at')
             ->get();
+    }
+
+    /**
+     * @param $leagueId
+     *
+     * @return void
+     */
+    public function store($leagueId): void
+    {
+        $standings = $this->getStandingsByLeagueId($leagueId);
+
+        if ($standings->isEmpty()) {
+            $this->standingFactory->createStandingsForLeague($leagueId);
+            $standings = $this->getStandingsByLeagueId($leagueId);
+        }
+
+        $this->resetStandings($standings);
+        $this->updateStandingsFromFixtures($standings, $leagueId);
     }
 }

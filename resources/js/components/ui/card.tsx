@@ -1,4 +1,5 @@
 import React from 'react';
+import {buttonStyles} from "./Button/buttonStyles";
 
 export const Card: React.FC = ({children}) => (
     <div className="border rounded-lg shadow-md p-8 bg-white">{children}</div>
@@ -18,6 +19,6 @@ export const CardContent: React.FC = ({children}) =>
         <div className="text-gray-700">{children}</div>
     );
 
-export const CardTitle: React.FC = ({text}) => (
-    <h2 className="text-xl font-semibold">{text}</h2>
+export const CardTitle: React.FC = ({text, className = ''}) => (
+    <h2 className={`text-xl font-semibold text-center ${className}`}>{text}</h2>
 );

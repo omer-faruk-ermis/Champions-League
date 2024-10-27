@@ -4,6 +4,7 @@ export const API_URLS = {
     team: '/team',
     standing: '/standing',
     league: '/league',
+    resetLeague: '/league/reset_league',
     fixture: '/fixture',
     createFixtures: '/fixture/create_fixtures',
     playWeekly: '/fixture/play_week_matches',

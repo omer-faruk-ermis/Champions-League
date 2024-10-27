@@ -88,6 +88,7 @@ class FixtureService
 
         $fixtureGenerator = new FixtureGenerator($league);
         $fixtureGenerator->createFixtures();
+        (new StandingService())->store($request->input('league_id'));
     }
 
     /**
@@ -100,5 +101,6 @@ class FixtureService
         $league           = League::find($request->input('league_id'));
         $fixtureGenerator = new FixtureGenerator($league);
         $fixtureGenerator->playMatches($request->input('match_order'));
+        (new StandingService())->store($request->input('league_id'));
     }
 }

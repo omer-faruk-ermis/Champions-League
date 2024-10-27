@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button } from "./button";
+import React, {useState} from 'react';
+import {Button} from "./button";
 
 interface GenerateFixturesButtonProps {
     disabled: boolean;
@@ -19,15 +19,13 @@ const GenerateFixturesButton: React.FC<GenerateFixturesButtonProps> = ({
     };
 
     return (
-        <>
-            <Button
-                className={`w-full mb-4 py-2 rounded ${disabled ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-500 text-white'}`}
-                disabled={loading || disabled}
-                onClick={handleGenerate}
-                style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
-                text={loading ? "Generating..." : "Generate Fixtures"}
-            />
-        </>
+        <Button
+            className={`w-full mb-4 py-2 rounded ${disabled ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-500 text-white'}`}
+            disabled={loading || disabled}
+            onClick={handleGenerate}
+            style={{cursor: disabled ? 'not-allowed' : 'pointer'}}
+            text={loading ? "Generating..." : "Generate Fixtures"}
+        />
     );
 };
 

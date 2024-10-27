@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Traits\ResourceableTrait;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Symfony\Component\HttpFoundation\Response;
 

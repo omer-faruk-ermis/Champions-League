@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Traits;
 
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Trait ResourceTrait
  *
- * @package App\Http\Resources
+ * @package App\Traits
  *
  */
 trait ResourceableTrait

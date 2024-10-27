@@ -44,9 +44,7 @@ class FixtureGenerator
             Fixture::create($fixtureData);
         }
 
-        $this->league->update([
-                                  'league_status' => LeagueStatus::ACTIVE,
-                              ]);
+        $this->league->update(['league_status' => LeagueStatus::ACTIVE]);
     }
 
     /**

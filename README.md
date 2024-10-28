@@ -35,10 +35,10 @@ Follow these steps for a smooth setup of the project:
 
 ### Installation
 
-1. **Install Laravel**:
-   To install Laravel, run the following command in your terminal:
+1. **Install Composer**:
+   To install Composer, run the following command in your terminal:
    ```bash
-   composer create-project --prefer-dist laravel/laravel project-name
+   composer install
    ```
 
 2. **Navigate to Project Directory**:
@@ -53,26 +53,20 @@ Follow these steps for a smooth setup of the project:
    cp .env.example .env
    ```
 
-4. **Install Composer Packages**:
-   Run the following command to install required dependencies:
-   ```bash
-   composer install
-   ```
-
-5. **Database Migrations and Seeders**:
+4. **Database Migrations and Seeders**:
    To create database tables and insert initial data, run:
    ```bash
    php artisan migrate
    php artisan db:seed
    ```
 
-6. **Node.js and NPM Installation**:
+5. **Node.js and NPM Installation**:
    To add dependencies to the project, run:
    ```bash
    npm install
    ```
 
-7. **Start Development Server**:
+6. **Start Development Server**:
    To run the project in development mode, use:
    ```bash
    npm run dev

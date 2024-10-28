@@ -1,13 +1,14 @@
 
 # Championship Simulation Program
 
-This project is a championship simulation program developed using the following technologies:
+If you want to be able to directly examine the project with the data as shown in this screen, you should run “php artisan migrate” and “php artisan DB:SEED”.
 
 ![Project-1 Screen](public/src/assests/Project-1.png)
 ![Project-2 Screen](public/src/assests/Project-2.png)
 ![Project-3 Screen](public/src/assests/Project-3.png)
 ![Project-4 Screen](public/src/assests/Project-4.png)
 
+This project is a championship simulation program developed using the following technologies:
 ![Laravel](public/laravel.png) 
 ![React](public/react.png) 
 ![TypeScript](public/typescript.png) 
